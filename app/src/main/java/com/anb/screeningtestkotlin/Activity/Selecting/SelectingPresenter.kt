@@ -2,6 +2,7 @@ package com.anb.screeningtestkotlin.Activity.Selecting
 
 import android.text.format.DateFormat
 import android.widget.Toast
+import com.anb.screeningtestkotlin.Activity.Base.BasePresenter
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
@@ -9,9 +10,7 @@ import java.text.SimpleDateFormat
  * Created by Agung Nursatria on 5/21/2018.
  */
 
-class SelectingPresenter(selectingView : SelectingContract.SelectingView): SelectingContract.SelectingPresenter{
-
-    val SView = selectingView
+class SelectingPresenter<V: SelectingContract.SelectingView>: BasePresenter<V>(), SelectingContract.SelectingPresenter<V>{
 
     override fun isMonthPrime(dateString: String) {
         try {
@@ -25,7 +24,7 @@ class SelectingPresenter(selectingView : SelectingContract.SelectingView): Selec
                     counter++
             }
             val prime = if (counter == 1) "Bulan $month merupakan bilangan prima" else "Bulan $month bukan bilangan prima"
-            SView.showToast(prime)
+            getView().showToast(prime)
         } catch (e: ParseException) {
             e.printStackTrace()
         }
@@ -47,7 +46,7 @@ class SelectingPresenter(selectingView : SelectingContract.SelectingView): Selec
             } else {
                 os = "feature phone"
             }
-            SView.showToast(os)
+            getView().showToast(os)
         } catch (e: ParseException) {
             e.printStackTrace()
         }

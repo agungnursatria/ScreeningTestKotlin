@@ -3,6 +3,8 @@ package com.anb.screeningtestkotlin.Activity.Guest
 import android.content.Context
 import android.content.res.Resources
 import android.view.View
+import com.anb.screeningtestkotlin.Activity.Base.MvpPresenter
+import com.anb.screeningtestkotlin.Activity.Base.MvpView
 import com.anb.screeningtestkotlin.adapter.GuestAdapter
 
 /**
@@ -10,7 +12,7 @@ import com.anb.screeningtestkotlin.adapter.GuestAdapter
  */
 
 class GuestContract{
-    interface GuestView{
+    interface GuestView: MvpView{
         fun refreshOn()
         fun refreshOff()
         fun setGuestAdapter(guestAdapter : GuestAdapter)
@@ -20,7 +22,7 @@ class GuestContract{
         fun toSelectingLayout(view : View)
     }
 
-    interface GuestPresenter{
+    interface GuestPresenter<V : MvpView> : MvpPresenter<V> {
         fun requestJSONwithRetrofit()
         fun removeAllDataRealm()
         fun initRealm(context: Context)

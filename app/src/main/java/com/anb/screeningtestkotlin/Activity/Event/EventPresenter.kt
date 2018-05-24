@@ -1,5 +1,6 @@
 package com.anb.screeningtestkotlin.Activity.Event
 
+import com.anb.screeningtestkotlin.Activity.Base.BasePresenter
 import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.model.Event
 import java.util.*
@@ -8,12 +9,11 @@ import java.util.*
  * Created by Agung Nursatria on 5/21/2018.
  */
 
-class EventPresenter(eventView: EventContract.EventView): EventContract.EventPresenter{
+class EventPresenter<V: EventContract.EventView>: BasePresenter<V>(), EventContract.EventPresenter<V>{
 
     companion object {
         var listEvent = ArrayList<Event>()
     }
-    val EView = eventView
 
     override fun initHashTag(): ArrayList<String> {
         return ArrayList(Arrays.asList("#nutricia", "#highlight f3"))
@@ -27,6 +27,6 @@ class EventPresenter(eventView: EventContract.EventView): EventContract.EventPre
             listEvent.add(Event(R.drawable.study, "Event 3", "Apr 15 2018", hashtag, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...", -6.977193, 107.629114))
             listEvent.add(Event(R.drawable.outbound, "Event 4", "Apr 17 2018", hashtag, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...", -6.972124, 107.633534))
         }
-        EView.seEventAdapter(listEvent)
+        getView().seEventAdapter(listEvent)
     }
 }

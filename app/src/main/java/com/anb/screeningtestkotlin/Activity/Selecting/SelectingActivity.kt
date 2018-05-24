@@ -5,19 +5,21 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.anb.screeningtestkotlin.Activity.Base.BaseActivity
 import com.anb.screeningtestkotlin.Activity.Event.EventActivity
 import com.anb.screeningtestkotlin.Activity.Guest.GuestActivity
 import com.anb.screeningtestkotlin.R
 import kotlinx.android.synthetic.main.activity_selecting.*
 
-class SelectingActivity : AppCompatActivity(), SelectingContract.SelectingView {
+class SelectingActivity : BaseActivity(), SelectingContract.SelectingView {
 
-    val SPresenter = SelectingPresenter(this)
+    val SPresenter = SelectingPresenter<SelectingContract.SelectingView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selecting)
 
+        SPresenter.onAttach(this)
         val extras = intent.extras
         txtNama.text = extras?.getString("nama")
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.Log
+import com.anb.screeningtestkotlin.Activity.Base.BasePresenter
 import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.Retrofit.RetroServer
 import com.anb.screeningtestkotlin.adapter.GuestAdapter
@@ -18,9 +19,8 @@ import java.util.ArrayList
  * Created by Agung Nursatria on 5/22/2018.
  */
 
-class GuestPresenter(guestView: GuestContract.GuestView) : GuestContract.GuestPresenter{
+class GuestPresenter<V: GuestContract.GuestView> : BasePresenter<V>(), GuestContract.GuestPresenter<V>{
 
-    val GView = guestView
     lateinit var realm : Realm
     var listGuest = ArrayList<Guest>()
     lateinit var guestAdapter : GuestAdapter
@@ -45,14 +45,14 @@ class GuestPresenter(guestView: GuestContract.GuestView) : GuestContract.GuestPr
                     listGuest.add(guestRealm)
                 }
                 createAdapter()
-                GView.setGuestAdapter(guestAdapter)
-                GView.refreshOff()
+                getView().setGuestAdapter(guestAdapter)
+                getView().refreshOff()
             }
 
             override fun onFailure(call: Call<ArrayList<Guest>>, t: Throwable) {
-                GView.showToast("Something went wrong")
+                getView().showToast("Something went wrong")
                 createAdapter()
-                GView.refreshOff()
+                getView().refreshOff()
             }
         })
     }
@@ -63,15 +63,15 @@ class GuestPresenter(guestView: GuestContract.GuestView) : GuestContract.GuestPr
             listGuest.add(results[i]!!)
         }
         createAdapter()
-        GView.setGuestAdapter(guestAdapter)
-        GView.refreshOff()
+        getView().setGuestAdapter(guestAdapter)
+        getView().refreshOff()
     }
 
     override fun setGridOrientation(resources : Resources) {
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            GView.grid2Column()
+            getView().grid2Column()
         } else {
-            GView.grid3Column()
+            getView().grid3Column()
         }
 
     }
@@ -81,7 +81,7 @@ class GuestPresenter(guestView: GuestContract.GuestView) : GuestContract.GuestPr
     }
 
     override fun createAdapter() {
-        guestAdapter = GuestAdapter(GView, listGuest)
+        guestAdapter = GuestAdapter(getView(), listGuest)
     }
 
     override fun clearList() {

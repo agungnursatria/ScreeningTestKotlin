@@ -1,5 +1,7 @@
 package com.anb.screeningtestkotlin.Activity.Map
 
+import com.anb.screeningtestkotlin.Activity.Base.MvpPresenter
+import com.anb.screeningtestkotlin.Activity.Base.MvpView
 import com.anb.screeningtestkotlin.model.Event
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -10,11 +12,11 @@ import java.util.ArrayList
  */
 
 class MapsContract{
-    interface MapsView{
+    interface MapsView: MvpView{
         fun setMapsAdapter(listEvent: ArrayList<Event>)
     }
 
-    interface MapsPresenter{
+    interface MapsPresenter<V : MvpView> : MvpPresenter<V> {
         fun initListEvent()
         fun initGoogle(googleMap: GoogleMap)
         fun initMarker()

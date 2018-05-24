@@ -2,6 +2,7 @@ package com.anb.screeningtestkotlin.Activity.Map
 
 import android.support.v4.view.ViewPager
 import android.util.Log
+import com.anb.screeningtestkotlin.Activity.Base.BasePresenter
 import com.anb.screeningtestkotlin.Activity.Event.EventPresenter
 import com.anb.screeningtestkotlin.model.Event
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -16,9 +17,7 @@ import java.util.ArrayList
  * Created by Agung Nursatria on 5/22/2018.
  */
 
-class MapsPresenter(mapsView: MapsContract.MapsView) : MapsContract.MapsPresenter{
-
-    val MView = mapsView
+class MapsPresenter<V: MapsContract.MapsView> : BasePresenter<V>(), MapsContract.MapsPresenter<V>{
 
     var listEvent = ArrayList<Event>()
     var mGoogleMap: GoogleMap? = null
@@ -43,7 +42,7 @@ class MapsPresenter(mapsView: MapsContract.MapsView) : MapsContract.MapsPresente
     }
 
     override fun initSetMapsAdapter() {
-        MView.setMapsAdapter(listEvent)
+        getView().setMapsAdapter(listEvent)
     }
 
     override fun changeFocusCamera(latLng: LatLng) {

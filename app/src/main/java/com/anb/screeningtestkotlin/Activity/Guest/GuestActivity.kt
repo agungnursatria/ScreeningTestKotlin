@@ -9,15 +9,16 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
+import com.anb.screeningtestkotlin.Activity.Base.BaseActivity
 import com.anb.screeningtestkotlin.R
 
 import com.anb.screeningtestkotlin.adapter.GuestAdapter
 import com.anb.screeningtestkotlin.Utils.NetworkState
 import kotlinx.android.synthetic.main.activity_guest.*
 
-class GuestActivity : AppCompatActivity(), GuestContract.GuestView {
+class GuestActivity : BaseActivity(), GuestContract.GuestView {
 
-    val GPresenter = GuestPresenter(this)
+    val GPresenter = GuestPresenter<GuestContract.GuestView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,7 @@ class GuestActivity : AppCompatActivity(), GuestContract.GuestView {
         setSupportActionBar(toolbar_guest)
 
         GPresenter.initRealm(this)
-
+        GPresenter.onAttach(this)
         GPresenter.requestJSONwithRetrofit()
 
         swipe_refresh_layout.setOnRefreshListener {
@@ -80,6 +81,11 @@ class GuestActivity : AppCompatActivity(), GuestContract.GuestView {
         returnIntent.putExtra("birthdayguest", txtGuestBirthday.text)
         setResult(Activity.RESULT_OK, returnIntent)
         finish()
+    }
+
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_CANCELED, Intent())
+        super.onBackPressed()
     }
 
     override fun onDestroy() {

@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import com.anb.screeningtestkotlin.Activity.Base.BaseActivity
 import com.anb.screeningtestkotlin.Activity.Map.MapsActivity
 import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.adapter.EventAdapter
@@ -18,15 +19,16 @@ import kotlinx.android.synthetic.main.event_item.*
 
 import java.util.*
 
-class EventActivity : AppCompatActivity(),EventContract.EventView {
+class EventActivity : BaseActivity(),EventContract.EventView {
 
-    val EPresenter = EventPresenter(this)
+    val EPresenter = EventPresenter<EventContract.EventView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
         setSupportActionBar(toolbarEvent)
 
+        EPresenter.onAttach(this)
         EPresenter.initData()
         event_list.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> toSelectingLayout(view) }
         btnBack.setOnClickListener { finish() }
@@ -59,5 +61,10 @@ class EventActivity : AppCompatActivity(),EventContract.EventView {
             toMapLayout()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_CANCELED, Intent())
+        super.onBackPressed()
     }
 }

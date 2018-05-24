@@ -22,12 +22,13 @@ import java.util.ArrayList
 
 class MapsFragment : Fragment(), OnMapReadyCallback, ViewPager.OnPageChangeListener, MapsContract.MapsView {
 
-    val MPresenter = MapsPresenter(this)
+    val MPresenter = MapsPresenter<MapsContract.MapsView>()
     var mView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mView = inflater!!.inflate(R.layout.fragment_map, container, false)
         MPresenter.initListEvent()
+        MPresenter.onAttach(this)
         return mView
     }
 

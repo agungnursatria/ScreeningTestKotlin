@@ -1,6 +1,8 @@
 package com.anb.screeningtestkotlin.Activity.Event
 
 import android.view.View
+import com.anb.screeningtestkotlin.Activity.Base.MvpPresenter
+import com.anb.screeningtestkotlin.Activity.Base.MvpView
 import com.anb.screeningtestkotlin.model.Event
 import java.util.ArrayList
 
@@ -9,13 +11,13 @@ import java.util.ArrayList
  */
 
 class EventContract{
-    interface EventView{
+    interface EventView: MvpView{
         fun toSelectingLayout(view : View)
         fun toMapLayout()
         fun seEventAdapter(listEvent: ArrayList<Event>)
     }
 
-    interface EventPresenter{
+    interface EventPresenter<V : MvpView> : MvpPresenter<V> {
         fun initData()
         fun initHashTag(): ArrayList<String>
     }

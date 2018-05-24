@@ -7,17 +7,20 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.anb.screeningtestkotlin.Activity.Base.BaseActivity
 import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.Activity.Selecting.SelectingActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity(), HomeContract.HomeView {
+class HomeActivity : BaseActivity(), HomeContract.HomeView {
 
-    val HPresenter = HomePresenter(this)
+    val HPresenter = HomePresenter<HomeContract.HomeView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        HPresenter.onAttach(this)
 
         btnSelesai.setOnClickListener(View.OnClickListener {
             HPresenter.palindromCheck(edtNama.text.toString())
