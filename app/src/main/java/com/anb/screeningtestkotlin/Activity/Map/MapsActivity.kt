@@ -17,8 +17,6 @@ class MapsActivity : AppCompatActivity() {
         btnBack.setOnClickListener { finish() }
     }
 
-
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.maps_menu, menu)
         return true

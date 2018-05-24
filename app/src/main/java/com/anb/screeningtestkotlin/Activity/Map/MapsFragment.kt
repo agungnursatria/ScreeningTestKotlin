@@ -39,7 +39,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, ViewPager.OnPageChangeListe
         }
     }
 
-
     override fun onMapReady(googleMap: GoogleMap) {
 
         MapsInitializer.initialize(context)

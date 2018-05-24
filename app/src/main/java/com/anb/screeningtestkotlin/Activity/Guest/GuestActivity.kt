@@ -5,9 +5,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.TextView
 import android.widget.Toast
@@ -16,7 +14,6 @@ import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.adapter.GuestAdapter
 import com.anb.screeningtestkotlin.Utils.NetworkState
 import kotlinx.android.synthetic.main.activity_guest.*
-import kotlinx.android.synthetic.main.guest_item.*
 
 class GuestActivity : AppCompatActivity(), GuestContract.GuestView {
 
@@ -47,6 +44,10 @@ class GuestActivity : AppCompatActivity(), GuestContract.GuestView {
 
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        GPresenter.setGridOrientation(resources)
+    }
+
     override fun refreshOn() {
         swipe_refresh_layout.isRefreshing = true
     }
@@ -55,7 +56,7 @@ class GuestActivity : AppCompatActivity(), GuestContract.GuestView {
         swipe_refresh_layout.isRefreshing = false
     }
 
-    override fun setGuestAdapter(guestAdapter : GuestAdapter) {
+    override fun setGuestAdapter(guestAdapter: GuestAdapter) {
         guest_list.adapter = guestAdapter
     }
 
@@ -67,11 +68,11 @@ class GuestActivity : AppCompatActivity(), GuestContract.GuestView {
         guest_list.numColumns = 3
     }
 
-    override fun showToast(sentence : String) {
+    override fun showToast(sentence: String) {
         Toast.makeText(this, sentence, Toast.LENGTH_SHORT).show()
     }
 
-    override fun toSelectingLayout(view : View) {
+    override fun toSelectingLayout(view: View) {
         val returnIntent = Intent()
         val txtGuestName = view.findViewById(R.id.txtGuestName) as TextView
         val txtGuestBirthday = view.findViewById(R.id.txtGuestBirthday) as TextView
