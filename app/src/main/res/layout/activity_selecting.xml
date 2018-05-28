@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="32dp"
-    tools:context=".Activity.Selecting.SelectingActivity">
+    tools:context=".ui.Selecting.SelectingActivity">
 
     <LinearLayout
         android:id="@+id/layoutNama"

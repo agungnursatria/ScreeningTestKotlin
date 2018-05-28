@@ -10,7 +10,7 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:padding="32dp"
-    tools:context=".Activity.Home.HomeActivity">
+    tools:context=".ui.Home.HomeActivity">
 
     <TextView
         android:id="@+id/txtSelamatDatang"

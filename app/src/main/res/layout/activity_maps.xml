@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.anb.screeningtestkotlin.Activity.Map.MapsActivity">
+    tools:context="com.anb.screeningtestkotlin.ui.Map.MapsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/fragmentMap"
-        class="com.anb.screeningtestkotlin.Activity.Map.MapsFragment"
+        class="com.anb.screeningtestkotlin.ui.Map.MapsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

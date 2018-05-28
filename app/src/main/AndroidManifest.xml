@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.Home.HomeActivity"
+            android:name=".ui.Home.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -34,18 +34,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.Event.EventActivity"
+            android:name=".ui.Event.EventActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.Guest.GuestActivity"
+            android:name=".ui.Guest.GuestActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.Selecting.SelectingActivity"
+            android:name=".ui.Selecting.SelectingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.Map.MapsActivity"
+            android:name=".ui.Map.MapsActivity"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar"/>
         <!--
