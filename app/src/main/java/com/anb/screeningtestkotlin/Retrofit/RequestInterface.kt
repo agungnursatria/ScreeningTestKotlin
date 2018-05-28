@@ -1,6 +1,8 @@
 package com.anb.screeningtestkotlin.Retrofit
 
 import com.anb.screeningtestkotlin.model.Guest
+import io.reactivex.Flowable
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import java.util.ArrayList
@@ -11,5 +13,5 @@ import java.util.ArrayList
 
 interface RequestInterface {
     @GET("api/people")
-    fun getJSON(): Call<ArrayList<Guest>>
+    fun getJSON(): Observable<ArrayList<Guest>>
 }
