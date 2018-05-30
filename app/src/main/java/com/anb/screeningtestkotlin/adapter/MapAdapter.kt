@@ -10,6 +10,7 @@ import android.widget.TextView
 
 import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.model.Event
+import kotlinx.android.synthetic.main.map_item.view.*
 
 import java.util.ArrayList
 
@@ -17,11 +18,7 @@ import java.util.ArrayList
  * Created by Agung Nursatria on 5/20/2018.
  */
 class MapAdapter(context: Context, var eventlist: ArrayList<Event>) : PagerAdapter() {
-    internal var mLayoutInflater: LayoutInflater
-
-    init {
-        mLayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    }
+    internal var mLayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getCount(): Int {
         return eventlist.size
@@ -34,11 +31,8 @@ class MapAdapter(context: Context, var eventlist: ArrayList<Event>) : PagerAdapt
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val v = mLayoutInflater.inflate(R.layout.map_item, container, false)
 
-        val imgMaps = v.findViewById(R.id.imgMaps) as ImageView
-        val txtMapsName = v.findViewById(R.id.txtMapsName) as TextView
-
-        imgMaps.setImageResource(eventlist[position].image)
-        txtMapsName.setText(eventlist[position].nama)
+        v.imgMaps.setImageResource(eventlist[position].image)
+        v.txtMapsName.text = eventlist[position].nama
 
         container.addView(v)
         return v

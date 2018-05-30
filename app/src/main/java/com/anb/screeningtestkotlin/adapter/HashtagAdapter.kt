@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import java.util.ArrayList
 import com.anb.screeningtestkotlin.R
+import kotlinx.android.synthetic.main.hashtag_item.view.*
 
 /**
  * Created by Agung Nursatria on 5/20/2018.
@@ -15,13 +16,12 @@ import com.anb.screeningtestkotlin.R
 class HashtagAdapter(var context: Context, var hashtagList: ArrayList<String>) : RecyclerView.Adapter<HashtagAdapter.HashtagViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HashtagViewHolder {
-        val inflater = LayoutInflater.from(parent.context) as LayoutInflater
-        val itemView = inflater.inflate(R.layout.hashtag_item, parent, false) as View
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.hashtag_item, parent, false) as View
         return HashtagViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: HashtagViewHolder, position: Int) {
-        holder.hashtag.text = hashtagList[position]
+        holder.bind(hashtagList[position])
     }
 
     override fun getItemCount(): Int {
@@ -29,10 +29,9 @@ class HashtagAdapter(var context: Context, var hashtagList: ArrayList<String>) :
     }
 
     inner class HashtagViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var hashtag: TextView
 
-        init {
-            hashtag = itemView.findViewById(R.id.hashtag)
+        fun bind(string : String){
+            itemView.hashtag.text = string
         }
     }
 
