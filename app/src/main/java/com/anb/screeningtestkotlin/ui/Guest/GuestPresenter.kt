@@ -3,6 +3,7 @@ package com.anb.screeningtestkotlin.ui.Guest
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
+import com.anb.screeningtestkotlin.App
 import com.anb.screeningtestkotlin.ui.Base.BasePresenter
 import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.Retrofit.RetroServer
@@ -18,15 +19,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
+import javax.inject.Inject
 
 /**
  * Created by Agung Nursatria on 5/22/2018.
  */
 
-class GuestPresenter<V: GuestContract.GuestView> : BasePresenter<V>(), GuestContract.GuestPresenter<V>{
+class GuestPresenter<V: GuestContract.GuestView>(var listGuest : ArrayList<Guest>) : BasePresenter<V>(), GuestContract.GuestPresenter<V>{
 
     lateinit var realm : Realm
-    var listGuest = ArrayList<Guest>()
     lateinit var guestAdapter : GuestAdapter
 
     override fun requestJSONwithRetrofit() {
@@ -37,7 +38,7 @@ class GuestPresenter<V: GuestContract.GuestView> : BasePresenter<V>(), GuestCont
         val request = RetroServer.getRequestService()
         val call : Observable<ArrayList<Guest>> = request.getJSON()
 
-        // implement RxJava
+        // example implement RxJava
         call.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

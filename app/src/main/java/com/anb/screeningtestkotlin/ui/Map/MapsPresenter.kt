@@ -9,15 +9,15 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.ArrayList
+import javax.inject.Inject
 
 /**
  * Created by Agung Nursatria on 5/22/2018.
  */
 
-class MapsPresenter<V: MapsContract.MapsView> : BasePresenter<V>(), MapsContract.MapsPresenter<V>{
+class MapsPresenter<V: MapsContract.MapsView>(var listEvent: ArrayList<Event>) : BasePresenter<V>(), MapsContract.MapsPresenter<V>{
 
-    var listEvent = ArrayList<Event>()
-    var mGoogleMap: GoogleMap? = null
+    lateinit var mGoogleMap: GoogleMap
 
     override fun initListEvent() {
         listEvent = EventPresenter.listEvent

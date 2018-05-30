@@ -1,5 +1,6 @@
 package com.anb.screeningtestkotlin.di.module
 
+import com.anb.screeningtestkotlin.model.Event
 import com.anb.screeningtestkotlin.ui.Map.MapsContract
 import com.anb.screeningtestkotlin.ui.Map.MapsPresenter
 import dagger.Module
@@ -12,7 +13,7 @@ class MapFragmentModule{
     @Provides
     @Singleton
     fun provideMapPresenter(): MapsPresenter<MapsContract.MapsView> {
-        return MapsPresenter<MapsContract.MapsView>()
+        return MapsPresenter<MapsContract.MapsView>(ArrayList<Event>())
     }
 
 }
