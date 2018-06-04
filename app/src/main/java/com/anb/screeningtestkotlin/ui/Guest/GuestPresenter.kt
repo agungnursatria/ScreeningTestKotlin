@@ -28,7 +28,6 @@ import javax.inject.Inject
 class GuestPresenter<V: GuestContract.GuestView>(var listGuest : ArrayList<Guest>) : BasePresenter<V>(), GuestContract.GuestPresenter<V>{
 
     lateinit var realm : Realm
-    lateinit var guestAdapter : GuestAdapter
 
     override fun requestJSONwithRetrofit() {
         removeAllDataRealm()
@@ -52,12 +51,11 @@ class GuestPresenter<V: GuestContract.GuestView>(var listGuest : ArrayList<Guest
                                 realm.commitTransaction()
                                 listGuest.add(guestRealm)
                             }
-                            createAdapter()
+                            getView().newList(listGuest)
                             getView().refreshOff()
-                            getView().setGuestAdapter(guestAdapter)
+                            getView().setGuestAdapter()
                         },
                         { e ->
-                            createAdapter()
                             getView().refreshOff()
                             getView().showToast("Something went wrong, ${e.message}")
                         }
@@ -69,31 +67,14 @@ class GuestPresenter<V: GuestContract.GuestView>(var listGuest : ArrayList<Guest
         for (i in results.indices) {
             listGuest.add(results[i]!!)
         }
-        createAdapter()
-        getView().setGuestAdapter(guestAdapter)
+        getView().newList(listGuest)
         getView().refreshOff()
+        getView().setGuestAdapter()
     }
 
-    override fun setGridOrientation(resources : Resources) {
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            getView().grid2Column()
-        } else {
-            getView().grid3Column()
-        }
-
-    }
 
     override fun realmIsEmpty(): Boolean {
         return realm.isEmpty
-    }
-
-    override fun createAdapter() {
-        guestAdapter = GuestAdapter(getView(), listGuest)
-    }
-
-    override fun clearList() {
-        guestAdapter.guestList.clear()
-        guestAdapter.notifyDataSetChanged()
     }
 
     override fun removeAllDataRealm() {
@@ -111,5 +92,9 @@ class GuestPresenter<V: GuestContract.GuestView>(var listGuest : ArrayList<Guest
     override fun initRealm(context: Context) {
         Realm.init(context)
         this.realm = Realm.getDefaultInstance()
+    }
+
+    override fun initAdapter(){
+        getView().createAdapter(listGuest)
     }
 }
