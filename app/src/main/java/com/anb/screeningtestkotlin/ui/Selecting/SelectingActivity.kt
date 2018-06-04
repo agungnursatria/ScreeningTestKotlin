@@ -8,7 +8,7 @@ import com.anb.screeningtestkotlin.ui.Base.BaseActivity
 import com.anb.screeningtestkotlin.ui.Event.EventActivity
 import com.anb.screeningtestkotlin.ui.Guest.GuestActivity
 import com.anb.screeningtestkotlin.R
-import com.anb.screeningtestkotlin.di.component.DaggerSelectingComponent
+import com.anb.screeningtestkotlin.di.component.DaggerActivityComponent
 import kotlinx.android.synthetic.main.activity_selecting.*
 import javax.inject.Inject
 
@@ -21,7 +21,7 @@ class SelectingActivity : BaseActivity(), SelectingContract.SelectingView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selecting)
 
-        DaggerSelectingComponent.builder()
+        DaggerActivityComponent.builder()
                 .build()
                 .inject(this)
 

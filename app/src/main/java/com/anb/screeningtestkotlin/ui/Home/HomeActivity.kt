@@ -8,7 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import com.anb.screeningtestkotlin.ui.Base.BaseActivity
 import com.anb.screeningtestkotlin.R
-import com.anb.screeningtestkotlin.di.component.DaggerHomeComponent
+import com.anb.screeningtestkotlin.di.component.DaggerActivityComponent
 import com.anb.screeningtestkotlin.ui.Selecting.SelectingActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class HomeActivity : BaseActivity(), HomeContract.HomeView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        DaggerHomeComponent.builder()
+        DaggerActivityComponent.builder()
                 .build()
                 .inject(this)
 

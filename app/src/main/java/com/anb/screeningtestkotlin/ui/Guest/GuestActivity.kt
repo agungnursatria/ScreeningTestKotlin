@@ -14,7 +14,7 @@ import com.anb.screeningtestkotlin.R
 
 import com.anb.screeningtestkotlin.adapter.GuestAdapter
 import com.anb.screeningtestkotlin.Utils.NetworkState
-import com.anb.screeningtestkotlin.di.component.DaggerGuestComponent
+import com.anb.screeningtestkotlin.di.component.DaggerActivityComponent
 import com.anb.screeningtestkotlin.model.Guest
 import kotlinx.android.synthetic.main.activity_guest.*
 import javax.inject.Inject
@@ -31,7 +31,7 @@ class GuestActivity : BaseActivity(), GuestContract.GuestView {
         setContentView(R.layout.activity_guest)
         setSupportActionBar(toolbar_guest)
 
-        DaggerGuestComponent.builder()
+        DaggerActivityComponent.builder()
                 .build()
                 .inject(this)
 

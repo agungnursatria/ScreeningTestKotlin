@@ -11,7 +11,7 @@ import com.anb.screeningtestkotlin.ui.Base.BaseActivity
 import com.anb.screeningtestkotlin.ui.Map.MapsActivity
 import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.adapter.EventAdapter
-import com.anb.screeningtestkotlin.di.component.DaggerEventComponent
+import com.anb.screeningtestkotlin.di.component.DaggerActivityComponent
 import com.anb.screeningtestkotlin.model.Event
 import kotlinx.android.synthetic.main.activity_event.*
 
@@ -28,7 +28,7 @@ class EventActivity : BaseActivity(),EventContract.EventView {
         setContentView(R.layout.activity_event)
         setSupportActionBar(toolbarEvent)
 
-        DaggerEventComponent.builder()
+        DaggerActivityComponent.builder()
                 .build()
                 .inject(this)
 

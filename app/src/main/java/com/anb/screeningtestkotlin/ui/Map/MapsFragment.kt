@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import com.anb.screeningtestkotlin.R
 
 import com.anb.screeningtestkotlin.adapter.MapAdapter
-import com.anb.screeningtestkotlin.di.component.DaggerMapComponent
+import com.anb.screeningtestkotlin.di.component.DaggerActivityComponent
 import com.anb.screeningtestkotlin.model.Event
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
@@ -31,7 +31,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, ViewPager.OnPageChangeListe
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mView = inflater!!.inflate(R.layout.fragment_map, container, false)
 
-        DaggerMapComponent.builder()
+        DaggerActivityComponent.builder()
                 .build()
                 .inject(this)
 
