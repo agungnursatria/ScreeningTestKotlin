@@ -112,5 +112,4 @@ class GuestActivity : BaseActivity(), GuestContract.GuestView {
         super.onDestroy()
         GPresenter.closeRealm()
     }
-
 }

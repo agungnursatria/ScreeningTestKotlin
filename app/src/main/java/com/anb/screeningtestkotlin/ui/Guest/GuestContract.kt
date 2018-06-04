@@ -13,6 +13,7 @@ import com.anb.screeningtestkotlin.model.Guest
  */
 
 class GuestContract{
+
     interface GuestView: MvpView{
         fun refreshOn()
         fun refreshOff()
@@ -34,4 +35,5 @@ class GuestContract{
         fun realmIsEmpty():Boolean
         fun closeRealm()
     }
+
 }

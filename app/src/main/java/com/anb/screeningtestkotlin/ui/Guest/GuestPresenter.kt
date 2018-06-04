@@ -97,4 +97,5 @@ class GuestPresenter<V: GuestContract.GuestView>(var listGuest : ArrayList<Guest
     override fun initAdapter(){
         getView().createAdapter(listGuest)
     }
+
 }
