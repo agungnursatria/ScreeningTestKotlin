@@ -3,6 +3,7 @@ package com.anb.screeningtestkotlin.ui.Guest
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -14,6 +15,7 @@ import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.adapter.GuestAdapter
 import com.anb.screeningtestkotlin.Utils.NetworkState
 import com.anb.screeningtestkotlin.di.component.DaggerGuestComponent
+import com.anb.screeningtestkotlin.model.Guest
 import kotlinx.android.synthetic.main.activity_guest.*
 import javax.inject.Inject
 
@@ -21,6 +23,8 @@ class GuestActivity : BaseActivity(), GuestContract.GuestView {
 
     @Inject
     lateinit var GPresenter : GuestPresenter<GuestContract.GuestView>
+
+    lateinit var guestAdapter : GuestAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +37,12 @@ class GuestActivity : BaseActivity(), GuestContract.GuestView {
 
         GPresenter.initRealm(this)
         GPresenter.onAttach(this)
+        GPresenter.initAdapter()
         GPresenter.requestJSONwithRetrofit()
 
         swipe_refresh_layout.setOnRefreshListener {
             refreshOn()
-            GPresenter.clearList()
+            clearList()
             if (NetworkState.isNetworkAvailable(applicationContext)) {
                 GPresenter.requestJSONwithRetrofit()
             } else {
@@ -45,14 +50,18 @@ class GuestActivity : BaseActivity(), GuestContract.GuestView {
             }
         }
 
-        GPresenter.setGridOrientation(resources)
+        setGridOrientation(resources)
 
         guest_list.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id -> toSelectingLayout(view) }
 
     }
 
+    override fun setGridOrientation(resources : Resources) {
+        guest_list.numColumns = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) 2 else 3
+    }
+
     override fun onConfigurationChanged(newConfig: Configuration?) {
-        GPresenter.setGridOrientation(resources)
+        setGridOrientation(resources)
     }
 
     override fun refreshOn() {
@@ -63,16 +72,21 @@ class GuestActivity : BaseActivity(), GuestContract.GuestView {
         swipe_refresh_layout.isRefreshing = false
     }
 
-    override fun setGuestAdapter(guestAdapter: GuestAdapter) {
+    override fun createAdapter(listGuest: ArrayList<Guest>) {
+        guestAdapter = GuestAdapter(this, listGuest)
+    }
+
+    override fun setGuestAdapter() {
         guest_list.adapter = guestAdapter
     }
 
-    override fun grid2Column() {
-        guest_list.numColumns = 2
+    override fun newList(listGuest: ArrayList<Guest>){
+        guestAdapter.guestList = listGuest
     }
 
-    override fun grid3Column() {
-        guest_list.numColumns = 3
+    override fun clearList() {
+        guestAdapter.guestList.clear()
+        guestAdapter.notifyDataSetChanged()
     }
 
     override fun showToast(sentence: String) {
