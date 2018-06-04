@@ -42,24 +42,24 @@ class GuestPresenter<V: GuestContract.GuestView>(var listGuest : ArrayList<Guest
         call.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { t ->
-                            for (i in 0 until t.size){
+                        { list ->
+                            for (i in 0 until list.size){
                                 realm.beginTransaction()
-                                val guestRealm = realm.createObject(Guest::class.java, t[i].id)
-                                guestRealm.name = t[i].name
-                                guestRealm.birthday = t[i].birthday
+                                val guestRealm = realm.createObject(Guest::class.java, list[i].id)
+                                guestRealm.name = list[i].name
+                                guestRealm.birthday = list[i].birthday
                                 guestRealm.image = img[i % 5]
                                 realm.commitTransaction()
                                 listGuest.add(guestRealm)
                             }
                             createAdapter()
-                            getView().setGuestAdapter(guestAdapter)
                             getView().refreshOff()
+                            getView().setGuestAdapter(guestAdapter)
                         },
-                        { t ->
-                            getView().showToast("Something went wrong")
+                        { e ->
                             createAdapter()
                             getView().refreshOff()
+                            getView().showToast("Something went wrong, ${e.message}")
                         }
                 )
     }
