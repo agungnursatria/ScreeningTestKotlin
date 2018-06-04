@@ -7,7 +7,9 @@ import com.anb.screeningtestkotlin.di.module.AppModule
 
 class App : Application(){
 
-    lateinit var appComponent: AppComponent
+    companion object {
+        lateinit var appComponent: AppComponent
+    }
 
     override fun onCreate() {
         super.onCreate()
