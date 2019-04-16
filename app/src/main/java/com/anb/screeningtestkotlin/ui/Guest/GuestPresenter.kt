@@ -1,25 +1,15 @@
 package com.anb.screeningtestkotlin.ui.Guest
 
 import android.content.Context
-import android.content.res.Configuration
-import android.content.res.Resources
-import com.anb.screeningtestkotlin.App
-import com.anb.screeningtestkotlin.ui.Base.BasePresenter
 import com.anb.screeningtestkotlin.R
-import com.anb.screeningtestkotlin.Retrofit.RetroServer
-import com.anb.screeningtestkotlin.adapter.GuestAdapter
-import com.anb.screeningtestkotlin.model.Guest
-import io.reactivex.Flowable
+import com.anb.screeningtestkotlin.data.Retrofit.RetroServer
+import com.anb.screeningtestkotlin.data.model.Guest
+import com.anb.screeningtestkotlin.ui.Base.BasePresenter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.ArrayList
-import javax.inject.Inject
+import java.util.*
 
 /**
  * Created by Agung Nursatria on 5/22/2018.
@@ -52,14 +42,13 @@ class GuestPresenter<V: GuestContract.GuestView>(var listGuest : ArrayList<Guest
                                 listGuest.add(guestRealm)
                             }
                             getView().newList(listGuest)
-                            getView().refreshOff()
                             getView().setGuestAdapter()
                         },
                         { e ->
-                            getView().refreshOff()
                             getView().showToast("Something went wrong, ${e.message}")
                         }
                 )
+        getView().refreshOff()
     }
 
     override fun loadDataFromRealm() {

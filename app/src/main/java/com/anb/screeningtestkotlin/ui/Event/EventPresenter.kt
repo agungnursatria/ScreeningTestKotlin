@@ -2,7 +2,7 @@ package com.anb.screeningtestkotlin.ui.Event
 
 import com.anb.screeningtestkotlin.ui.Base.BasePresenter
 import com.anb.screeningtestkotlin.R
-import com.anb.screeningtestkotlin.model.Event
+import com.anb.screeningtestkotlin.data.model.Event
 import java.util.*
 
 /**

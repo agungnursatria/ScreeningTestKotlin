@@ -1,4 +1,4 @@
-package com.anb.screeningtestkotlin.model
+package com.anb.screeningtestkotlin.data.model
 
 /**
  * Created by Agung Nursatria on 5/20/2018.

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.anb.screeningtestkotlin.ui.Guest.GuestContract
-import com.anb.screeningtestkotlin.model.Guest
+import com.anb.screeningtestkotlin.data.model.Guest
 import java.util.ArrayList
 import com.anb.screeningtestkotlin.R
 

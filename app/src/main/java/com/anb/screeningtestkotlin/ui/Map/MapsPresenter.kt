@@ -2,14 +2,13 @@ package com.anb.screeningtestkotlin.ui.Map
 
 import com.anb.screeningtestkotlin.ui.Base.BasePresenter
 import com.anb.screeningtestkotlin.ui.Event.EventPresenter
-import com.anb.screeningtestkotlin.model.Event
+import com.anb.screeningtestkotlin.data.model.Event
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import java.util.ArrayList
-import javax.inject.Inject
 
 /**
  * Created by Agung Nursatria on 5/22/2018.

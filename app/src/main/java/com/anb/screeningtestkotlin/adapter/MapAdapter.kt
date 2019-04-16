@@ -5,11 +5,9 @@ import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 
 import com.anb.screeningtestkotlin.R
-import com.anb.screeningtestkotlin.model.Event
+import com.anb.screeningtestkotlin.data.model.Event
 import kotlinx.android.synthetic.main.map_item.view.*
 
 import java.util.ArrayList

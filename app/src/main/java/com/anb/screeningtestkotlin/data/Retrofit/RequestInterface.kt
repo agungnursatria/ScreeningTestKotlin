@@ -1,6 +1,6 @@
-package com.anb.screeningtestkotlin.Retrofit
+package com.anb.screeningtestkotlin.data.Retrofit
 
-import com.anb.screeningtestkotlin.model.Guest
+import com.anb.screeningtestkotlin.data.model.Guest
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.Call

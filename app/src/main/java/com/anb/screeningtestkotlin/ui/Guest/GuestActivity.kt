@@ -15,7 +15,7 @@ import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.adapter.GuestAdapter
 import com.anb.screeningtestkotlin.Utils.NetworkState
 import com.anb.screeningtestkotlin.di.component.DaggerActivityComponent
-import com.anb.screeningtestkotlin.model.Guest
+import com.anb.screeningtestkotlin.data.model.Guest
 import kotlinx.android.synthetic.main.activity_guest.*
 import javax.inject.Inject
 

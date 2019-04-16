@@ -1,4 +1,4 @@
-package com.anb.screeningtestkotlin.model
+package com.anb.screeningtestkotlin.data.model
 
 import java.util.ArrayList
 

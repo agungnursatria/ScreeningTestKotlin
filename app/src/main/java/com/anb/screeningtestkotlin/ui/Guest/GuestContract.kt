@@ -5,8 +5,7 @@ import android.content.res.Resources
 import android.view.View
 import com.anb.screeningtestkotlin.ui.Base.MvpPresenter
 import com.anb.screeningtestkotlin.ui.Base.MvpView
-import com.anb.screeningtestkotlin.adapter.GuestAdapter
-import com.anb.screeningtestkotlin.model.Guest
+import com.anb.screeningtestkotlin.data.model.Guest
 
 /**
  * Created by Agung Nursatria on 5/22/2018.

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.anb.screeningtestkotlin.model.Event
+import com.anb.screeningtestkotlin.data.model.Event
 import java.util.ArrayList
 import com.anb.screeningtestkotlin.R
 

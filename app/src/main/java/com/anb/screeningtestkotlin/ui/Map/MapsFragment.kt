@@ -13,7 +13,7 @@ import com.anb.screeningtestkotlin.R
 
 import com.anb.screeningtestkotlin.adapter.MapAdapter
 import com.anb.screeningtestkotlin.di.component.DaggerActivityComponent
-import com.anb.screeningtestkotlin.model.Event
+import com.anb.screeningtestkotlin.data.model.Event
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.OnMapReadyCallback

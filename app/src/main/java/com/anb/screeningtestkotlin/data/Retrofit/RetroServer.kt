@@ -1,4 +1,4 @@
-package com.anb.screeningtestkotlin.Retrofit
+package com.anb.screeningtestkotlin.data.Retrofit
 
 /**
  * Created by Agung Nursatria on 5/21/2018.

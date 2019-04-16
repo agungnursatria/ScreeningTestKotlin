@@ -1,6 +1,6 @@
 package com.anb.screeningtestkotlin.di.module
 
-import com.anb.screeningtestkotlin.model.Guest
+import com.anb.screeningtestkotlin.data.model.Guest
 import com.anb.screeningtestkotlin.ui.Guest.GuestContract
 import com.anb.screeningtestkotlin.ui.Guest.GuestPresenter
 import dagger.Module

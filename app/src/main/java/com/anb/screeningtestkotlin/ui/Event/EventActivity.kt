@@ -12,7 +12,7 @@ import com.anb.screeningtestkotlin.ui.Map.MapsActivity
 import com.anb.screeningtestkotlin.R
 import com.anb.screeningtestkotlin.adapter.EventAdapter
 import com.anb.screeningtestkotlin.di.component.DaggerActivityComponent
-import com.anb.screeningtestkotlin.model.Event
+import com.anb.screeningtestkotlin.data.model.Event
 import kotlinx.android.synthetic.main.activity_event.*
 
 import java.util.*

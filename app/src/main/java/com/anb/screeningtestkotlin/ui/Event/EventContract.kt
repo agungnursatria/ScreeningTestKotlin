@@ -3,7 +3,7 @@ package com.anb.screeningtestkotlin.ui.Event
 import android.view.View
 import com.anb.screeningtestkotlin.ui.Base.MvpPresenter
 import com.anb.screeningtestkotlin.ui.Base.MvpView
-import com.anb.screeningtestkotlin.model.Event
+import com.anb.screeningtestkotlin.data.model.Event
 import java.util.ArrayList
 
 /**
